@@ -1,38 +1,166 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-todo {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.inner {
+  padding: 8rem 10px 4rem;
+  width: 100%;
+}
+.form-container {
+  border-radius: 50px;
+  box-shadow: 0 1px 6px 0 rgb(0 0 0 / 38%);
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.input-text {
+  font-size: 1rem;
+  font-weight: 400;
+  width: 85%;
+  padding-right: 5px;
+  padding-left: 20px;
+  border-radius: calc(0.5 * 100px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-text::placeholder {
+  color: #000;
+}
+
+.btn-submit {
+  background: transparent;
+  color: #5b5b5b;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.input-text,
+.btn-submit {
+  height: 60px;
+  outline: none;
+  border: none;
+}
+.todo_item {
+  position: relative;
+  border-bottom: 1px solid #a6a3a3;
+  font-size: 1.2rem;
+  list-style-type: none;
+  padding: 17px 0;
+  transition: 0.3;
+}
+
+.Item:hover {
+  background: #a9adb1;
+  cursor: pointer;
+}
+
+.todo-edit_btn {
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  height: 50px;
+  outline: none;
+  width: 50px;
+  transition: all 0.3s;
+  line-height: 50px;
+  position: absolute;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
+  /* margin: -10px 0 0 10px; */
+}
+.todo-edit_btn:hover {
+  background: #b5e259;
+  color: darkcyan;
+}
+
+.todo-delete_btn {
+  /* background: #f1f3f4; */
+  /* float: right; */
+  /* margin: -10px 0 0 10px; */
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 20px;
+  height: 50px;
+  outline: none;
+  width: 50px;
+  transition: all 0.3s;
+  line-height: 50px;
+  position: absolute;
+  top: 7px;
+  right: 0;
+}
+.todo-delete_btn:hover {
+  color: red;
+  background: #bd8585;
+}
+
+/* ?? CHECKBOX CUSTOM??  */
+input[type="checkbox"] {
+  display: none;
+}
+.custom-checkbox {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+}
+
+.custom-checkbox .checkmark {
+  top: -9px;
+  left: 0;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #222;
+  display: inline-block;
+  border-radius: 3px;
+  background: rgb(14, 128, 52)
+    url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png)
+    center/1250% no-repeat;
+  transition: background-size 0.2s ease;
+}
+
+.custom-checkbox input:checked + .checkmark {
+  background-size: 60%;
+  transition: background-size 0.25s cubic-bezier(0.7, 0, 0.18, 1.24);
+}
+
+.custom-checkbox input:checked + .todo-item {
+  background: linear-gradient(
+    90deg,
+    rgb(120, 214, 134) 0%,
+    rgb(139, 219, 153) 100%
+  );
+}
+
+.strike {
+  text-decoration: line-through;
+  color: #000;
+}
+.input-rename:focus {
+  border: none;
+  outline: none;
+}
+.input-rename {
+  outline: none;
+  border: none;
+  width: 50%;
+  padding-left: 10px;
+  margin: 0 auto;
 }
