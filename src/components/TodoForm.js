@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/action/todoAction";
 import "../../src/App.css";
 
-export default function TodoForm() {
+export default function TodoForm({ error, setError }) {
   const [todo, setTodo] = useState("");
-  const [error, seterror] = useState("");
+
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -15,7 +15,7 @@ export default function TodoForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (todo.trim() === "") {
-      seterror("task can't be empty!");
+      setError("task can't be empty!");
       return;
     }
     const newTodo = {
@@ -26,12 +26,15 @@ export default function TodoForm() {
     };
     dispatch(addTodo(newTodo));
     setTodo("");
-    seterror("");
-    // console.log(newTodo);
+    setError("");
+  };
+
+  const handleBlur = () => {
+    setError("");
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center" onBlur={handleBlur}>
       <form onSubmit={handleSubmit} className="form-container">
         <input
           autoFocus

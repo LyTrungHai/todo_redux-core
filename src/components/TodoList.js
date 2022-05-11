@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   deleteTodo,
   isComplete,
@@ -8,9 +8,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 // import { set } from "react-hook-form";
 
-export default function TodoList() {
+export default function TodoList({ setError }) {
   const getTodo = useSelector((state) => state.todoReducer);
-  const [error, setError] = useState("");
+  console.log(getTodo);
   const dispatch = useDispatch();
   const saveRef = useRef({});
 
@@ -38,14 +38,15 @@ export default function TodoList() {
 
   return (
     <ul className="text-center">
-      {setError && <span className="text-danger">{error}</span>}
       {getTodo.map((todo) => (
         <div key={todo.id} className="position-relative Item">
           <>
+            {/* TODO ITEM  */}
             {!todo.edit && (
               <li className={todo.complete ? "todo_item strike" : "todo_item"}>
-                <span>{todo.text}</span>
+                <span className="todo_text">{todo.text}</span>
                 <i
+                  title="Edit Todo"
                   onClick={() => handleEdit(todo)}
                   className="todo-edit_btn fa-solid fa-pen"
                 ></i>
@@ -54,7 +55,7 @@ export default function TodoList() {
             {todo.edit && (
               <li className={todo.complete ? "todo_item strike" : "todo_item"}>
                 <input
-                  autoFocus
+                  autoFocus={true}
                   type="text"
                   defaultValue={todo.text}
                   ref={(e) => (saveRef.current[todo.id] = e)}
@@ -83,6 +84,7 @@ export default function TodoList() {
             </label>
             {/* DELETE ICON  */}
             <i
+              title="Delete Todo"
               className="todo-delete_btn fa-solid fa-trash"
               onClick={() => handleDeleteTodo(todo)}
             ></i>

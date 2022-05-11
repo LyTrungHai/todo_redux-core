@@ -15,9 +15,8 @@ export const loginAction = (userInfo, callback) => {
         });
         callback();
       }
-      console.log(result);
-    } catch (error) {
-      console.log(error.message);
+    } catch (response) {
+      console.log(response);
     }
     return dispatch;
   };
