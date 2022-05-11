@@ -8,10 +8,12 @@ import { loginAction } from "../../redux/action/loginAction";
 import { useNavigate } from "react-router-dom";
 // import { object } from "yup";
 import { ErrorMessage } from "@hookform/error-message";
+import { useSnackbar } from "notistack";
 
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   // const [userInfo, setUserInfo] = useState();
   const {
     register,
@@ -23,6 +25,7 @@ function LoginForm() {
   const onSubmit = (userData) => {
     console.log(userData);
     dispatch(loginAction(userData, handleLoginSucces));
+    enqueueSnackbar("WELLCOME to Todo", { variant: "success" });
     console.log(dispatch);
   };
   const handleLoginSucces = () => {
