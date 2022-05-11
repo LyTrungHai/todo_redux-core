@@ -25,10 +25,11 @@ function LoginForm() {
   const onSubmit = (userData) => {
     console.log(userData);
     dispatch(loginAction(userData, handleLoginSucces));
-    enqueueSnackbar("WELLCOME to Todo", { variant: "success" });
+
     console.log(dispatch);
   };
   const handleLoginSucces = () => {
+    enqueueSnackbar("WELLCOME to Todo", { variant: "success" });
     navigate("/todo");
   };
 
